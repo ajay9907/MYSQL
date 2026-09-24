@@ -447,6 +447,279 @@ mysql> SELECT*FROM CUSTOMER  ORDER BY BALANCE ASC;
 +----+---------+------+----------+-----------+-------------------+
 7 rows in set (0.00 sec)
 
+
+
+mysql> CREATE TABLE PRODUCT1(
+    -> P_ID INT PRIMARY KEY,
+    -> P_NAME VARCHAR(20),
+    -> PRICE DECIMAL(10,2),
+    -> QUANTITY INT,
+    -> DISCOUNT DECIMAL (5,2),
+    -> P_CODE VARCHAR(10),
+    -> DESCRIPTION TEXT,
+    -> LAUNCH_DATE DATE,
+    -> LAUNCH_TIME TIME,
+    -> IS_AVAILABLE BOOLEAN
+    ->
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select*from Product1;
+Empty set (0.00 sec)
+
+mysql> desc product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| P_ID         | int           | NO   | PRI | NULL    |       |
+| P_NAME       | varchar(20)   | YES  |     | NULL    |       |
+| PRICE        | decimal(10,2) | YES  |     | NULL    |       |
+| QUANTITY     | int           | YES  |     | NULL    |       |
+| DISCOUNT     | decimal(5,2)  | YES  |     | NULL    |       |
+| P_CODE       | varchar(10)   | YES  |     | NULL    |       |
+| DESCRIPTION  | text          | YES  |     | NULL    |       |
+| LAUNCH_DATE  | date          | YES  |     | NULL    |       |
+| LAUNCH_TIME  | time          | YES  |     | NULL    |       |
+| IS_AVAILABLE | tinyint(1)    | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(101,'MOTOROLA',45000.00,1,15.00,009,'PRODUCT IS GOOD','2026-09-24','12:45:55',TRUE);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from Product1;
++------+----------+----------+----------+----------+--------+-----------------+-------------+-------------+--------------+
+| P_ID | P_NAME   | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION     | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+----------+----------+----------+----------+--------+-----------------+-------------+-------------+--------------+
+|  101 | MOTOROLA | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD | 2026-09-24  | 12:45:55    |            1 |
++------+----------+----------+----------+----------+--------+-----------------+-------------+-------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> desc product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| P_ID         | int           | NO   | PRI | NULL    |       |
+| P_NAME       | varchar(20)   | YES  |     | NULL    |       |
+| PRICE        | decimal(10,2) | YES  |     | NULL    |       |
+| QUANTITY     | int           | YES  |     | NULL    |       |
+| DISCOUNT     | decimal(5,2)  | YES  |     | NULL    |       |
+| P_CODE       | varchar(10)   | YES  |     | NULL    |       |
+| DESCRIPTION  | text          | YES  |     | NULL    |       |
+| LAUNCH_DATE  | date          | YES  |     | NULL    |       |
+| LAUNCH_TIME  | time          | YES  |     | NULL    |       |
+| IS_AVAILABLE | tinyint(1)    | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(102,'MOTOROLA EDGE',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CUR_DATE(),CURTIME(),TRUE);
+ERROR 1305 (42000): FUNCTION product.CUR_DATE does not exist
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(102,'MOTOROLA EDGE',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CURDATE(),CURTIME(),TRUE);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| P_ID         | int           | NO   | PRI | NULL    |       |
+| P_NAME       | varchar(20)   | YES  |     | NULL    |       |
+| PRICE        | decimal(10,2) | YES  |     | NULL    |       |
+| QUANTITY     | int           | YES  |     | NULL    |       |
+| DISCOUNT     | decimal(5,2)  | YES  |     | NULL    |       |
+| P_CODE       | varchar(10)   | YES  |     | NULL    |       |
+| DESCRIPTION  | text          | YES  |     | NULL    |       |
+| LAUNCH_DATE  | date          | YES  |     | NULL    |       |
+| LAUNCH_TIME  | time          | YES  |     | NULL    |       |
+| IS_AVAILABLE | tinyint(1)    | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select*from Product1;
++------+---------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME        | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+---------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA      | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2026-09-24  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
++------+---------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2026-09-24 04:01:55 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(103,'MOTOROLA FUSION',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CUR_DATE(),CURTIME(),TRUE);
+ERROR 1305 (42000): FUNCTION product.CUR_DATE does not exist
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(103,'MOTOROLA FUSION',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CURDATE(),CURTIME(),TRUE);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(NULL,'MOTOROLA FUSION',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CURDATE(),CURTIME(),TRUE);
+ERROR 1048 (23000): Column 'P_ID' cannot be null
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(NULL,'MOTOROLA FUSION',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CURDATE(),CURTIME(),NULL);
+ERROR 1048 (23000): Column 'P_ID' cannot be null
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(104,'MOTOROLA FUSION',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CURDATE(),CURTIME(),NULL);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO PRODUCT1(P_ID,P_NAME,PRICE,QUANTITY,DISCOUNT,P_CODE,DESCRIPTION,LAUNCH_DATE,LAUNCH_TIME,IS_AVAILABLE)VALUES(105,'MOTOROLA FUSION',55000.00,2,20.00,008,'PRODUCT IS EXPENSIVE',CURDATE(),NULL,FALSE);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from Product1;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2026-09-24  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT PRODUCT WHERE PRICE>50000;
+ERROR 1054 (42S22): Unknown column 'PRODUCT' in 'field list'
+mysql> SELECT * FROM PRODUCT WHERE PRICE>50000;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM PRODUCT1 WHERE PRICE>50000;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT PRODUCT1 WHERE P_NAME,PRICE,DISCOUNT=20.00;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',PRICE,DISCOUNT=20.00' at line 1
+mysql> SELECT*FROM PRODUCT1 WHERE P_NAME,PRICE,DISCOUNT=20.00;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',PRICE,DISCOUNT=20.00' at line 1
+mysql> SELECT*FROM PRODUCT1 WHERE P_NAME AND PRICE AND DISCOUNT=20.00;
+Empty set, 4 warnings (0.01 sec)
+
+mysql> SELECT*FROM PRODUCT1 WHERE P_NAME AND PRICE AND DISCOUNT>=20.00;
+Empty set, 5 warnings (0.00 sec)
+
+mysql> SELECT P_NAME,PRICE,DISCOUNT FROM PRODUCT1 WHERE DISCOUNT>=20.00;
++-----------------+----------+----------+
+| P_NAME          | PRICE    | DISCOUNT |
++-----------------+----------+----------+
+| MOTOROLA EDGE   | 55000.00 |    20.00 |
+| MOTOROLA FUSION | 55000.00 |    20.00 |
+| MOTOROLA FUSION | 55000.00 |    20.00 |
+| MOTOROLA FUSION | 55000.00 |    20.00 |
++-----------------+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from Product1;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2026-09-24  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from product1 where quantity>=1;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2026-09-24  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from product1 where quantity>1;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from product1 where launch_date='2026-09-24';
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2026-09-24  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+5 rows in set (0.01 sec)
+
+mysql>
+mysql> select*from product1 where launch_date!='2026-09-24';
+Empty set (0.00 sec)
+
+mysql> update product1 set launch_date='2025-04-12'where p_id=101;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from product1;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2025-04-12  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from product1 where launch_date='2026-09-24';
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
+|  105 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | NULL        |            0 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from product1 where launch_time>'04:10:00';
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2025-04-12  | 12:45:55    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
+|  104 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:13:23    |         NULL |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from product1 where is_available=true;
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+| P_ID | P_NAME          | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION          | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+|  101 | MOTOROLA        | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD      | 2025-04-12  | 12:45:55    |            1 |
+|  102 | MOTOROLA EDGE   | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:01:14    |            1 |
+|  103 | MOTOROLA FUSION | 55000.00 |        2 |    20.00 | 8      | PRODUCT IS EXPENSIVE | 2026-09-24  | 04:12:38    |            1 |
++------+-----------------+----------+----------+----------+--------+----------------------+-------------+-------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT*FROM PRODUCT1 WHERE P_NAME LIKE '%MOTOROLA';
++------+----------+----------+----------+----------+--------+-----------------+-------------+-------------+--------------+
+| P_ID | P_NAME   | PRICE    | QUANTITY | DISCOUNT | P_CODE | DESCRIPTION     | LAUNCH_DATE | LAUNCH_TIME | IS_AVAILABLE |
++------+----------+----------+----------+----------+--------+-----------------+-------------+-------------+--------------+
+|  101 | MOTOROLA | 45000.00 |        1 |    15.00 | 9      | PRODUCT IS GOOD | 2025-04-12  | 12:45:55    |            1 |
++------+----------+----------+----------+----------+--------+-----------------+-------------+-------------+--------------+
+1 row in set (0.00 sec)
 mysql> SELECT*FROM CUSTOMER  GROUP BY BALANCE ASC;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASC' at line 1
 mysql> SELECT*FROM CUSTOMER  GROUP BY BALANCE ;
