@@ -2350,3 +2350,46 @@ mysql> desc employee2;
 3 rows in set (0.00 sec)
 
 mysql>
+
+EMPLOYEE2, find the employee(s) whose salary is greater than the average salary of all employees.
+
+select*from employee2 where salary >(SELECT AVG(SALARY)FROM EMPLOYEE2);
+
+find the employee(s) who have the highest salary.
+
+SELECT * FROM EMPLOYEE2 WHERE SALARY=(SELECT MAX(SALARY)FROM EMPLOYEE2);
+
+find the employee(s) whose salary is less than the average salary of employees in the IT department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY<(SELECT AVG(SALARY)FROM EMPLOYEE2 WHERE DEPT='IT');
+
+Find the employee(s) who have the same salary as the highest-paid employee in the HR department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY =(SELECT MAX(SALARY)FROM EMPLOYEE2 WHERE DEPT='HR');
+
+Find all employees whose salary is greater than the highest salary in the HR department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY>(SELECT MAX(SALARY) FROM EMPLOYEE2 WHERE DEPT='HR');
+
+Find all employees who earn more than the average salary of the FINANCE department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY >(SELECT AVG(SALARY)FROM EMPLOYEE2 WHERE DEPT='FINANCE');
+
+Find the employee(s) who have the lowest salary in the IT department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY=(SELECT MIN(SALARY) FROM EMPLOYEE2 WHERE DEPT='IT');
+
+Find all employees whose salary is greater than the lowest salary in the HR department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY =(SELECT AVG(SALARY) FROM EMPLOYEE2 WHERE DEPT='IT');
+
+Find the employee(s) whose salary is greater than the average salary of the HR department.
+SELECT*FROM EMPLOYEE2 WHERE SALARY >(SELECT AVG(SALARY) FROM EMPLOYEE2 WHERE DEPT='HR');
+
+Find all employees whose salary is less than the average salary of the IT department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY <(SELECT AVG(SALARY) FROM EMPLOYEE2 WHERE DEPT='IT');
+
+Find all employees who have a salary greater than the highest salary in the FINANCE department.
+
+SELECT*FROM EMPLOYEE2 WHERE SALARY >(SELECT MAX(SALARY)FROM EMPLOYEE2 WHERE DEPT='FINANCE');
