@@ -306,7 +306,73 @@ SELECT c.C_ID ,c.C_NAME ,c.CITY ,o.O_ID ,o.O_DATE,o.AMOUNT FROM CUSTOMER c LEFT 
 
 -- Display all orders with customer name and city, but show only orders where the amount is less than ₹40,000.
 
-SELECT c.C_ID,c.C_NAME,c.CITY,o.O_ID,o.O_DATE,o.AMOUNT FROM CUSTOMER c RIGHT JOIN ORDERS o ON c.C_ID=o.O_ID WHERE o.AMOUNT<40000;     
+SELECT c.C_ID,c.C_NAME,c.CITY,o.O_ID,o.O_DATE,o.AMOUNT FROM CUSTOMER c RIGHT JOIN ORDERS o ON c.C_ID=o.O_ID WHERE o.AMOUNT<40000;  
+
+
+
+GROUP BY & HAVING CLAUSES :-
+
+Find the number of employees in each department.
+
+SELECT DEPT ,COUNT(DEPT)FROM EMPLOYEE2 GROUP BY DEPT;
+
+Find the total salary of employees in each department.
+
+SELECT DEPT ,SUM(SALARY) FROM EMPLOYEE2 GROUP BY DEPT;
+
+Find the average salary of employees in each department
+
+SELECT DEPT, AVG(SALARY)FROM EMPLOYEE2 GROUP BY DEPT;
+
+Find the highest salary in each department.
+
+SELECT DEPT,MAX(SALARY) FROM EMPLOYEE2 GROUP BY DEPT;
+
+Find the LOWEST salary in each department.
+
+SELECT DEPT,MIN(SALARY) FROM EMPLOYEE2 GROUP BY DEPT;
+
+ind the number of employees in each department whose salary is greater than ₹50,000.
+
+SELECT DEPT , COUNT(*)FROM EMPLOYEE2 WHERE SALARY>50000 GROUP BY DEPT;
+
+
+Find the average salary of employees in each department where the average salary is greater than ₹50,000.
+
+SELECT DEPT,AVG(SALARY)FROM EMPLOYEE2 GROUP BY DEPT HAVING  AVG (SALARY)>50000;
+
+Find the departments having more than 3 employees.
+
+ SELECT DEPT,COUNT(*)FROM EMPLOYEE2 GROUP BY DEPT HAVING COUNT(DEPT)>3;
+
+
+Find the departments where the maximum salary is greater than ₹70,000.
+
+SELECT DEPT,MAX(SALARY)FROM EMPLOYEE2 GROUP BY DEPT HAVING MAX(SALARY)>70000;
+
+Find the departments where the minimum salary is less than ₹35,000.
+
+SELECT DEPT,MIN(SALARY)FROM EMPLOYEE2 GROUP BY DEPT HAVING MIN(SALARY)<35000;
+
+Find the departments where the total salary is greater than ₹2,00,000.
+
+SELECT DEPT,SUM(SALARY)FROM EMPLOYEE2 GROUP BY DEPT HAVING SUM(SALARY)>200000;
+
+Find the departments having more than 4 employees and an average salary greater than ₹45,000
+
+SELECT DEPT, COUNT(*)FROM EMPLOYEE2GROUP BY DEPTHAVING COUNT(*) > 4 AND AVG(SALARY) > 45000;
+
+
+
+
+
+
+
+
+
+ 
+
+
 
 
 
